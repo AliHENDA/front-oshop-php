@@ -1,1 +1,3 @@
 import_trello.php
+# Si on envoie vendor sur git, ça prend de la place inutilement, donc on ignore le dossier
+vendor/

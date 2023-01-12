@@ -1,3 +1,6 @@
 import_trello.php
 # Si on envoie vendor sur git, ça prend de la place inutilement, donc on ignore le dossier
 vendor/
+# Quand je met directement config.ini et pas /app/config.ini =>
+# J'ignore TOUS les fichiers config.ini du projet
+config.ini

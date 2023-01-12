@@ -1,0 +1,10 @@
+; Fichier de configuration
+; Contient des données sensibles, on va donc créer un fichier accessible depuis GIT
+; Et un autre qui va contenir nos données sensibles qu'on va ignorer
+; On va nommer le fichier d'exemple config.ini.dist
+; Et le fichier de production config.ini
+
+DB_HOST=localhost
+DB_USERNAME=
+DB_PASSWORD=
+DB_NAME=

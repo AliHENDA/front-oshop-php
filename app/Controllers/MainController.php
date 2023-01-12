@@ -19,6 +19,25 @@ class MainController {
     $this->show('404');
   }
 
+  public function testAction() {
+   // Je crée mon objet product
+   $productObject = new Product;
+
+   // J'enregistre les résultats du findAll dans une variable
+   $allproducts = $productObject->findAll();
+   // Je dump les résultats du findAll
+   dump($allproducts);
+
+   echo '-----------------';
+
+   // j'enregistre le résultat du find sur la Category qui a l'id 4 dans une variable
+   $oneProduct = $productObject->find(4);
+   // Je dump les résultats du find
+   dump($oneProduct);
+
+  }
+
+
   //pourquoi private? car cette method n'est appelée qu'à l'intérieur de MainController
   private function show($viewName, $viewData = []) {
     $absoluteURL = $_SERVER['BASE_URI'];

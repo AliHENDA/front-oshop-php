@@ -3,6 +3,13 @@
 // Chargement des dépendances via autoload de composer:
 require __DIR__ . '/../vendor/autoload.php';
 
+// Inclut la classe qui permet de se connecter à PDO
+// Et la rend accessible dans les autres fichiers
+require __DIR__ . '/../app/Utils/Database.php';
+//test
+require __DIR__ . '/../app/Models/Product.php';
+
+
 require __DIR__ . '/../app/Controllers/MainController.php';
 require __DIR__ . '/../app/Controllers/CatalogController.php';
 
@@ -91,6 +98,17 @@ $router->map(
     'method' => 'productAction',
   ], 
   'product' 
+);
+
+//test
+$router->map(
+  'GET',
+  '/test',
+  [
+    'controller' => 'MainController',
+    'method' => 'testAction',
+  ], 
+  'test'
 );
 
 $match = $router->match();

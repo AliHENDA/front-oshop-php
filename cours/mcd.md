@@ -81,3 +81,35 @@ is a, 0N TYPE, 11 PRODUCT
 |footer_order|TINYINT(1)|NOT NULL, DEFAULT 0|L'ordre d'affichage du type dans le footer (0=pas affichée dans le footer)|
 |created_at|TIMESTAMP|DEFAULT CURRENT_TIMESTAMP|La date de création du type|
 |updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour du type|
+
+## MCD Qu'est-ce que c'est ?
+
+Provient de la méthode Merise (ou Merise 2)
+
+Modèle Conceptuel de Données => C'est une représentation FONCTIONNELLE du besoin du client. 
+Ce document est destiné à la fois aux équipes techniques mais aussi au client qui n'est pas forcément de profil technique, cela permet de bien s'assurer qu'on pense de la même manière pour partir sur une base qui n'aura pas besoin de trop de modifs par la suite.
+
+Il contient
+- Des entités (chaque élément de data devient une entité)
+- Des associations (les entités sont liées entre elles par des associations qui comportent un verbe à l'infinitif)
+- Des cardinalités (pour définir clairement les relations entre entités)
+- Des propriétés au sein des entités, ATTENTION, jamais d'ID dans un MCD
+
+Il sert à définir la structure des données en suivant une logique normée par Merise. Chaque ensemble de cardinalités permet une traduction lors du passage au MLD.
+
+Règles de passage MCD -> MLD : http://www-igm.univ-mlv.fr/~chochois/RessourcesCommunes/BDD/Modelisation/coursMLD.pdf
+
+## MLD Qu'est-ce que c'est ?
+
+C'est la traduction littérale du MCD en ce qui va devenir notre base de données. 
+
+- En majuscules: le nom de la table à créer, 
+- Entre parenthèses: les champs de la table
+- En souligné: la clé primaire (PK / Primary key)
+- Préfixée de #: la clé étrangère (FK / Foreign key)
+
+Cette traduction va nous servir de plan pour créer notre BDD (et potentiellement pour en avoir un apperçu)
+
+## MPD Qu'est-ce que c'est ?
+
+C'est la représentation graphique de notre BDD physique

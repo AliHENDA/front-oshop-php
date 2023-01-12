@@ -23,6 +23,7 @@ class CatalogController {
 
 
   private function show($viewName, $viewData = []) {
+    $absoluteURL = $_SERVER['BASE_URI'];
     // $viewData est disponible dans chaque fichier de vue
     require_once __DIR__ . '/../views/header.tpl.php';
     require_once __DIR__ . '/../views/' . $viewName . '.tpl.php';

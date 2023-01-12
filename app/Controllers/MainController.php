@@ -5,6 +5,15 @@ class MainController {
     $this->show('home');
   }
 
+  public function legalNoticeAction() {
+    
+    $this->show('legal-notice');
+  }
+  public function cgvAction() {
+    
+    $this->show('cgv');
+  }
+
   public function pageNotFound() {
     header("HTTP/1.1 404 Not Found");
     $this->show('404');

@@ -35,16 +35,16 @@ $router->map(
 
 $router->map(
   'GET',
-  '/mentions-legales/',
+  '/mentions-legales',
   [
     'controller' => 'MainController',
     'method' => 'legalNoticeAction',
   ], 
-  'mentions-legales'
+  'legal-notice'
 );
 $router->map(
   'GET',
-  '/conditions-generales-de-vente/',
+  '/conditions-generales-de-vente',
   [
     'controller' => 'MainController',
     'method' => 'cgvAction',

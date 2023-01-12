@@ -17,7 +17,7 @@ class CatalogController {
   }
 
   public function productAction($params) {
-    $productId = $params['id'];
+    $brandId = $params['id'];
     $this->show('product', ['product_id' => $brandId]);
   }
 

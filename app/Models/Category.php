@@ -1,38 +1,33 @@
 <?php
 
-class Category{
-  private $id;
-  private $name;
+class Category extends CoreModel{
   private $subtitle;
   private $picture;
   private $home_order;
-  private $created_at;
-  private $updated_at;
 
-  /**
-   * Get the value of id
+
+    // Question à se poser pour savoir si je mets un setter:
+  // Est-ce que j'ai l'intention d'autoriser la modification de ce champ?
+  // Quesiont à se poser pour savoir si je mets un getter:
+  // Est-ce que j'ai l'intention de récupérer ces informations pour m'en servir OU les afficher ?
+
+
+   /**
+   * Get the value of subtitle
    */ 
-  public function getId()
+  public function getSubtitle()
   {
-    return $this->id;
+    return $this->subtitle;
   }
 
   /**
-   * Get the value of name
-   */ 
-  public function getName()
-  {
-    return $this->name;
-  }
-
-  /**
-   * Set the value of name
+   * Set the value of subtitle
    *
    * @return  self
    */ 
-  public function setName($name)
+  public function setSubtitle($subtitle)
   {
-    $this->name = $name;
+    $this->subtitle = $subtitle;
 
     return $this;
   }
@@ -66,32 +61,17 @@ class Category{
   }
 
   /**
-   * Get the value of created_at
-   */ 
-  public function getCreated_at()
-  {
-    return $this->created_at;
-  }
-
-  /**
-   * Get the value of updated_at
-   */ 
-  public function getUpdated_at()
-  {
-    return $this->updated_at;
-  }
-
-  /**
-   * Set the value of updated_at
+   * Set the value of home_order
    *
    * @return  self
    */ 
-  public function setUpdated_at($updated_at)
+  public function setHome_order($home_order)
   {
-    $this->updated_at = $updated_at;
+    $this->home_order = $home_order;
 
     return $this;
   }
+
 
    /* --------------- METHODES ACTIVE RECORD ------------------- */
 
@@ -111,6 +91,7 @@ class Category{
     $pdoStatement = $databaseDbConnection->query($sql);
 
     // On récupère les données retournées par la BDD
+     // __CLASS__ correspond au nom de la classe en cours d'utilisation (donc ici __CLASS__ = 'Category')
     $categoryList = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'category');
 
     return $categoryList;

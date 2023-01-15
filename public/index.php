@@ -6,9 +6,11 @@ require __DIR__ . '/../vendor/autoload.php';
 // Inclut la classe qui permet de se connecter à PDO
 // Et la rend accessible dans les autres fichiers
 require __DIR__ . '/../app/Utils/Database.php';
-//test
+require __DIR__ . '/../app/Models/CoreModel.php';
+require __DIR__ . '/../app/Models/Brand.php';
+require __DIR__ . '/../app/Models/Category.php';
+require __DIR__ . '/../app/Models/Type.php';
 require __DIR__ . '/../app/Models/Product.php';
-
 
 require __DIR__ . '/../app/Controllers/MainController.php';
 require __DIR__ . '/../app/Controllers/CatalogController.php';

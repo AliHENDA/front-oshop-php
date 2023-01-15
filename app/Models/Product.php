@@ -1,46 +1,16 @@
 <?php
 
-class Product {
-    Private $id;
-    Private $name;
+class Product extends CoreModel{
+
     Private $description;
     Private $picture;
     Private $price;
     Private $rate;
     Private $status;
-    Private $created_at;
-    Private $updated_at;
     Private $brand_id;
     Private $category_id;
     Private $type_id;
 
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set the value of name
-     *
-     * @return  self
-     */ 
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
 
     /**
      * Get the value of description
@@ -142,33 +112,7 @@ class Product {
         return $this;
     }
 
-    /**
-     * Get the value of created_at
-     */ 
-    public function getCreated_at()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * Get the value of updated_at
-     */ 
-    public function getUpdated_at()
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * Set the value of updated_at
-     *
-     * @return  self
-     */ 
-    public function setUpdated_at($updated_at)
-    {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
+    
 
     /**
      * Get the value of brand_id
@@ -221,7 +165,8 @@ class Product {
    * Récupérer une marque spécifique
    *
    * @param int $product_id
-   * @return product
+   * @return Product
+   * 
    */
   public function find($product_id) {
     // On récupère la connexion PDO

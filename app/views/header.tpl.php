@@ -70,12 +70,17 @@
               <div class="dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Marques</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="products_list.html">BOOTstrap</a>
-                  <a class="dropdown-item" href="products_list.html">O'shoes</a>
-                  <a class="dropdown-item" href="products_list.html">oCirage</a>
-                  <a class="dropdown-item" href="products_list.html">oPompes</a>
-                  <a class="dropdown-item" href="products_list.html">Pattes d'eph</a>
-                  <a class="dropdown-item" href="products_list.html">PHPieds</a>
+                <?php
+                    $brands;
+                    // Je boucle sur le tableau qui contient toutes les marques que j'ai récupéré dans la méthode show ($brands)
+
+                    // Pour tous les objets contenus dans mon tableau $brands, à chaque passage dans la boucle, je récupère un nouvel objet $brand (qui correspond à une ligne du tableau en cours de lecture)
+                    foreach($brands as $brand):
+                  ?>
+                  <a class="dropdown-item" href="<?= $router->generate('brand', ['id' => $brand->getId()]) ?>"><?= $brand->getName(); ?></a>
+                  <?php
+                    endforeach;
+                  ?>
                 </div>
               </div>
             </li>

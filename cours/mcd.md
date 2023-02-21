@@ -82,6 +82,7 @@ is a, 0N TYPE, 11 PRODUCT
 |created_at|TIMESTAMP|DEFAULT CURRENT_TIMESTAMP|La date de création du type|
 |updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour du type|
 
+
 ## MCD Qu'est-ce que c'est ?
 
 Provient de la méthode Merise (ou Merise 2)
@@ -113,3 +114,17 @@ Cette traduction va nous servir de plan pour créer notre BDD (et potentiellemen
 ## MPD Qu'est-ce que c'est ?
 
 C'est la représentation graphique de notre BDD physique
+
+## Rappel jointures:
+
+```sql
+-- Récupération du produit avec son name avec le nom de la marque associée
+-- Rappel SQL: SELECT champ FROM table
+SELECT product.name, brand.name AS 'brand_name'
+FROM product
+JOIN brand
+ON product.brand_id = brand.id
+```
+
+Pour une jointure on va préciser dans le FROM et le/les JOIN les tables à lier.
+Il faut spécifier quel est le champ qui correspond à l'autre dans le ON, par exemple ici on dit que le brand_id de la table product correspond i l'id de la table brand.

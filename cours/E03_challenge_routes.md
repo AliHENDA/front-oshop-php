@@ -5,7 +5,7 @@
 | URL | HTTP Method | Controller | Method | Title | Content | Comment |
 |--|--|--|--|--|--|--|
 | `/` | `GET` | `MainController` | `homeAction` | Dans les shoe | 5 categories | - |
-| `/mentions-legales/` | `GET` | `MainController` | `legalNoticeAction` | Mentions légales | Legal notice | - |
+| `/mentions-legales` | `GET` | `MainController` | `legalNoticeAction` | Mentions légales | Legal notice | - |
 | `/catalogue/categorie/[id]` | `GET` | `CatalogController` | `categoryAction` | #Name of the category# | List of products attached to the category | [id] represents the id of the category |
 | `/catalogue/type/[id]` | `GET` | `CatalogController` | `typeAction` | #Name of the type# | List of products attached to the type | [id] represents the id of the type |
 | `/catalogue/marque/[id]` | `GET` | `CatalogController` | `brandAction` | #Name of the brand# | List of products attached to the brand | [id] represents the id of the brand |

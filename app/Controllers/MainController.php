@@ -1,17 +1,28 @@
 <?php
 
-class MainController {
+namespace Oshop\Controllers;
+
+use Oshop\Models\Brand;
+use Oshop\Models\Product;
+use Oshop\Models\Category;
+use Oshop\Models\Type;
+
+class MainController extends CoreController {
   public function homeAction() {
-    $this->show('home');
+    
+
+    // récupérer les données nécessaire à l'affichage de la page
+    $categoryObject = new Category;
+    $categoriesHomePage = $categoryObject->getHomePageCategories();
+
+    $this->show('home', [
+      'categoriesHomePage' => $categoriesHomePage
+      ]
+    );
   }
 
   public function legalNoticeAction() {
-    
-    $this->show('legal-notice');
-  }
-  public function cgvAction() {
-    
-    $this->show('cgv');
+    $this->show('legal_notice');
   }
 
   public function pageNotFound() {
@@ -20,44 +31,55 @@ class MainController {
   }
 
   public function testAction() {
-   // Je crée mon objet product
-   $productObject = new Product;
+    echo '--------PRODUCT:---------';
 
-   // J'enregistre les résultats du findAll dans une variable
-   $allproducts = $productObject->findAll();
-   // Je dump les résultats du findAll
-   dump($allproducts);
+    $productObject =  new Product;
+    $allProducts = $productObject->findAll();
+    dump($allProducts);
 
-   echo '-----------------';
+    echo '-----------------';
 
-   // j'enregistre le résultat du find sur la Category qui a l'id 4 dans une variable
-   $oneProduct = $productObject->find(4);
-   // Je dump les résultats du find
-   dump($oneProduct);
+    $oneProduct = $productObject->find(1);
+    dump($oneProduct);
 
-  }
+    echo '--------TYPE:---------';
+    /* Test de Flavien:*/
 
+    $typeObject = new Type;
+    $allTypes = $typeObject->findAll();
+    dump($allTypes);
 
-  //pourquoi private? car cette method n'est appelée qu'à l'intérieur de MainController
-  private function show($viewName, $viewData = []) {
-     // Brutal et à ne pas réutiliser à l'avenir sauf en cas de force majeure
-    // Ou de disparition du f0f
-    // On utilise le mot clé global, grâce à ça on rend accessible dans la fonction
-    // une variable à laquelle la fonction n'aurait pas accès normalement
-    // En gros = Global outrepasse la portée de la variable
-    global $router;
-    
-    $absoluteURL = $_SERVER['BASE_URI'];
+    echo '-----------------';
 
-     // Comme je veux afficher les marques sur le header
-    // Et que le header est appelé sur TOUTES les pages
-    // Alors je récupère la liste des marques ici
+    $oneType = $typeObject->find(4);
+    dump($oneType);
+
+    echo '--------CATEGORY:---------';
+    /* Test de David: */
+    $categoryObject = new Category;
+
+    $allCategories = $categoryObject->findAll();
+    dump($allCategories);
+
+    echo '-----------------';
+
+    $oneCategory = $categoryObject->find(4);
+    dump($oneCategory);
+
+    echo '--------BRAND:---------';
+    // Je crée mon objet Brand
     $brandObject = new Brand;
-    $brands = $brandObject->findAll();
 
-    // $viewData est disponible dans chaque fichier de vue
-    require_once __DIR__ . '/../views/header.tpl.php';
-    require_once __DIR__ . '/../views/' . $viewName . '.tpl.php';
-    require_once __DIR__ . '/../views/footer.tpl.php';
+    // J'enregistre les résultats du findAll dans une variable
+    $allBrands = $brandObject->findAll();
+    // Je dump les résultats du findAll
+    dump($allBrands);
+
+    echo '-----------------';
+
+    // j'enregistre le résultat du find sur la Brand qui a l'id 4 dans une variable
+    $oneBrand = $brandObject->find(4);
+    // Je dump les résultats du find
+    dump($oneBrand);
   }
 }

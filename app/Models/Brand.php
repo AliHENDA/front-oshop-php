@@ -1,8 +1,11 @@
 <?php
 
-class Brand extends CoreModel{
-  /* --------------- PROPRIETES ------------------- */
+namespace Oshop\Models;
 
+use Oshop\Utils\Database;
+use \PDO;
+
+class Brand extends CoreModel {
   /* --------------- METHODES ACTIVE RECORD ------------------- */
 
   /**
@@ -10,7 +13,7 @@ class Brand extends CoreModel{
    *
    * @return Brand[]
    */
-  public function findAll() {
+  public static function findAll() {
     // On récupère la connexion PDO
     $databaseDbConnection = Database::getPDO();
 
@@ -21,7 +24,7 @@ class Brand extends CoreModel{
     $pdoStatement = $databaseDbConnection->query($sql);
 
     // On récupère les données retournées par la BDD
-    $brandList = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Brand');
+    $brandList = $pdoStatement->fetchAll(PDO::FETCH_CLASS, __CLASS__);
 
     return $brandList;
   }
@@ -32,7 +35,7 @@ class Brand extends CoreModel{
    * @param int $brand_id
    * @return Brand
    */
-  public function find($brand_id) {
+  public static function find($brand_id) {
     // On récupère la connexion PDO
     $databaseDbConnection = Database::getPDO();
 
@@ -47,4 +50,19 @@ class Brand extends CoreModel{
 
     return $brand;
   }
+
+  public function getAllBrandsAssoc() {
+    $pdo = Database::getPDO();
+
+    $sql = "SELECT `id`, `name` FROM `brand`";
+
+    $pdoStatement = $pdo->query($sql);
+
+    // Je veux récupérer la première colonne (les ids) en tant qu'indexs dans mon tableau associatif
+    // Et la seconde en tant que valeur
+    $result = $pdoStatement->fetchAll(PDO::FETCH_KEY_PAIR);
+
+    return $result;
+}
+
 }

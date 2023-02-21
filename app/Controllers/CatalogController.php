@@ -1,46 +1,57 @@
 <?php
 
-class CatalogController {
+namespace Oshop\Controllers;
+
+use Oshop\Models\Product;
+use Oshop\Models\Brand;
+use Oshop\Models\Type;
+use Oshop\Models\Category;
+
+class CatalogController extends CoreController {
   public function categoryAction($params) {
     $categoryId = $params['id'];
-    $this->show('category', ['category_id' => $categoryId]);
+
+    $categoryObject = Category::find($categoryId);
+
+    $productList = Product::findAllByCategoryId($categoryId);
+
+    $this->show('category', [
+      'categoryObject' => $categoryObject,
+      'productList' => $productList]);
   }
 
   public function typeAction($params) {
     $typeId = $params['id'];
-    $this->show('type', ['type_id' => $typeId]);
+    
+    $typeObject = Type::find($typeId);
+
+    $productList = Product::findAllByTypeId($typeId);
+
+    $this->show('type', [
+      'typeObject' => $typeObject,
+      'productList' => $productList]);
   }
 
   public function brandAction($params) {
     $brandId = $params['id'];
-    $this->show('brand', ['brand_id' => $brandId]);
+
+    $brandObject = Brand::find($brandId);
+
+    $productList = Product::findAllByBrandId($brandId);
+
+    $this->show('brand', [
+      'brandObject' => $brandObject,
+      'productList' => $productList]);
   }
 
   public function productAction($params) {
-    $brandId = $params['id'];
-    $this->show('product', ['product_id' => $brandId]);
+    $productId = $params['id'];
+
+    $productObject = new Product;
+    $product = $productObject->find($productId);
+
+    // On envoie à viewData directement l'objet product
+    $this->show('product', ['product' => $product]);
   }
 
-
-  private function show($viewName, $viewData = []) {
-     // Brutal et à ne pas réutiliser à l'avenir sauf en cas de force majeure
-    // Ou de disparition du f0f
-    // On utilise le mot clé global, grâce à ça on rend accessible dans la fonction
-    // une variable à laquelle la fonction n'aurait pas accès normalement
-    // En gros = Global outrepasse la portée de la variable
-    global $router;
-    
-    $absoluteURL = $_SERVER['BASE_URI'];
-
-     // Comme je veux afficher les marques sur le header
-    // Et que le header est appelé sur TOUTES les pages
-    // Alors je récupère la liste des marques ici
-    $brandObject = new Brand;
-    $brands = $brandObject->findAll();
-
-    // $viewData est disponible dans chaque fichier de vue
-    require_once __DIR__ . '/../views/header.tpl.php';
-    require_once __DIR__ . '/../views/' . $viewName . '.tpl.php';
-    require_once __DIR__ . '/../views/footer.tpl.php';
-  }
 }

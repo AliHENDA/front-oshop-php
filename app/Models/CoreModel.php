@@ -1,12 +1,14 @@
 <?php
 
+namespace Oshop\Models;
+
 class CoreModel {
 
   /* --------------- PROPRIETES ------------------- */
-  Protected $id;
-  Protected $name;
-  Protected $created_at;
-  Protected $updated_at;
+  protected $id;
+  protected $name;
+  protected $created_at;
+  protected $updated_at;
 
 /* --------------- GETTERS / SETTERS ------------------- */
   /*

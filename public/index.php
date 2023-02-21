@@ -3,18 +3,6 @@
 // Chargement des dépendances via autoload de composer:
 require __DIR__ . '/../vendor/autoload.php';
 
-// Inclut la classe qui permet de se connecter à PDO
-// Et la rend accessible dans les autres fichiers
-require __DIR__ . '/../app/Utils/Database.php';
-require __DIR__ . '/../app/Models/CoreModel.php';
-require __DIR__ . '/../app/Models/Brand.php';
-require __DIR__ . '/../app/Models/Category.php';
-require __DIR__ . '/../app/Models/Type.php';
-require __DIR__ . '/../app/Models/Product.php';
-
-require __DIR__ . '/../app/Controllers/MainController.php';
-require __DIR__ . '/../app/Controllers/CatalogController.php';
-
 // Tableau des routes
 
 /*
@@ -32,6 +20,8 @@ $router = new AltoRouter();
 // Eviter absolument tout caractère spécial ou espace dans les noms des dossiers
 $router->setBasePath($_SERVER['BASE_URI']);
 
+// dd($_SERVER);
+
 $router->map(
   'GET', // La méthode HTTP autorisée par cette route
   '/', // La partie d'URL (après la racine du site / basepath) qui correspond à la page demandée
@@ -43,6 +33,16 @@ $router->map(
 );
 
 $router->map(
+  'GET', // La méthode HTTP autorisée par cette route
+  '/catalogue/categorie/[i:id]', // La partie d'URL (après la racine du site / basepath) qui correspond à la page demandée
+  [
+    'controller' => 'CatalogController',
+    'method' => 'categoryAction',
+  ], // Les informations qu'on va utiliser pour la route
+  'category' // Identifiant unique pour cette route / param optionnel
+);
+
+$router->map(
   'GET',
   '/mentions-legales',
   [
@@ -51,30 +51,9 @@ $router->map(
   ], 
   'legal-notice'
 );
-$router->map(
-  'GET',
-  '/conditions-generales-de-vente',
-  [
-    'controller' => 'MainController',
-    'method' => 'cgvAction',
-  ], 
-  'cgv'
-);
-
-
 
 $router->map(
   'GET',
-  '/catalogue/categorie/[i:id]',
-  [
-    'controller' => 'CatalogController',
-    'method' => 'categoryAction',
-  ],
-  'category' 
-);
-
-$router->map(
-  'GET', 
   '/catalogue/type/[i:id]',
   [
     'controller' => 'CatalogController',
@@ -84,25 +63,25 @@ $router->map(
 );
 
 $router->map(
-  'GET', 
+  'GET',
   '/catalogue/marque/[i:id]',
   [
     'controller' => 'CatalogController',
     'method' => 'brandAction',
   ], 
-  'brand' 
+  'brand'
 );
+
 $router->map(
-  'GET', 
+  'GET',
   '/catalogue/produit/[i:id]',
   [
     'controller' => 'CatalogController',
     'method' => 'productAction',
   ], 
-  'product' 
+  'product'
 );
 
-//test
 $router->map(
   'GET',
   '/test',
@@ -115,10 +94,9 @@ $router->map(
 
 $match = $router->match();
 
-/*
-dump($match);
-exit;
-*/
+
+// dd($match);
+
 
 // Quand on dump $match, on remarque:
 // Si la route à laquelle j'essaie d'accéder existe: 
@@ -136,7 +114,7 @@ if ($match !== false) {
   $routeInfos = $match['target'];
 
   // On récupère dans ce tableau le contrôleur à utiliser et la méthode à appeler
-  $controllerToUse = $routeInfos['controller'];
+  $controllerToUse = '\\Oshop\\Controllers\\' . $routeInfos['controller'];
   $method = $routeInfos['method'];
   $urlParams = $match['params'];
 
@@ -148,6 +126,6 @@ if ($match !== false) {
   $controller->$method($urlParams);
   // $controller->homeAction();
 } else {
-  $controller = new MainController();
+  $controller = new \Oshop\Controllers\MainController();
   $controller->pageNotFound();
 }

@@ -28,6 +28,9 @@ Sécurisé, MAIS accessible au sein de sa propre famille (les enfants ont accès
 Accessible depuis le code interne à la classe MAIS aussi aux enfants et parents de la classe. 
 Peuvent être appelées dans du code interne à la classe et du code interne à la classe des enfants.
 
+Le mot de Google :
+"protected" est similaire à "private" en ce sens qu'il permet de restreindre l'accès aux membres d'une classe, mais il permet également de les rendre accessibles aux classes héritées. Cela signifie qu'une méthode ou une propriété déclarée comme "protected" peut être surchargée (overridden) dans une classe enfant.
+
 `J'ai fermé à double tour et fermé les fenêtres. Mais j'ai donné des doubles des clés à chaque membre de ma famille`
 
 
@@ -51,3 +54,52 @@ Exemple : class Guerrier extends Personnage
 
 On peut surcharger une méthode, c'est à dire la réécrire par dessus celle du parent.
 Pour surcharger une méthode: elle doit avoir le même nom et la même visibilité.
+
+# Mémo rapide héritage
+
+- une classe ne peut hériter que d'une seule classe
+- elle hérite alors de toutes ses méthodes et propriétés (comme un gros copier-coller)
+- c'est tout :boom:
+
+## Exemple
+
+```php
+<?php
+
+class Computer {
+    protected $processor;
+    protected $hardDisk;
+    protected $ram;
+    protected $operatingSystem;
+    // [...]
+}
+```
+
+```php
+<?php
+
+class Laptop extends Computer {
+    // Adding properties to Computer properties
+    protected $screenSize;
+    // [...]
+
+    // Adding methods to Computer methods
+    // [...]
+}
+```
+
+```php
+<?php
+
+class Server extends Computer {
+    // Adding properties to Computer properties
+    protected $units;
+    // [...]
+
+    // Adding methods to Computer methods
+    // [...]
+}
+```
+
+`Laptop` et `Server` sont des classes "enfants" de `Computer`. Elles héritent donc de ses propriétés et méthodes.
+Mais l'intérêt est d'ajouter des propriétés et/ou méthodes spécifiques à `Laptop` et spécifiques à `Server`.

@@ -109,6 +109,10 @@
         </div>
       </div>
     </div>
+    <?php
+    // Regarder la liste des fichier inclus au chargement de la page
+    // dump(get_included_files());
+    ?>
   </footer>
 
   <!-- JS -->

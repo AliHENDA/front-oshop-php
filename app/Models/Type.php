@@ -1,14 +1,15 @@
 <?php
 
-class Type extends CoreModel{
+namespace Oshop\Models;
 
-      /* --------------- GETTERS / SETTERS ------------------- */
+use Oshop\Utils\Database;
+// On peut préférer utiliser un use plutôt que l'appel direct dans le code lorsqu'on sait qu'on va utiliser la classe plusieurs fois 
+use \PDO;
 
-
-  /* --------------- METHODES ACTIVE RECORD ------------------- */
+class Type extends CoreModel {
 
   /**
-   * Récupérer la liste de toutes les types de produit
+   * Récupérer la liste de tous les types
    *
    * @return Type[]
    */
@@ -23,23 +24,24 @@ class Type extends CoreModel{
     $pdoStatement = $databaseDbConnection->query($sql);
 
     // On récupère les données retournées par la BDD
-    $typeList = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Type');
+    $typesList = $pdoStatement->fetchAll(PDO::FETCH_CLASS, __CLASS__);
 
-    return $typeList;
+    return $typesList;
   }
 
   /**
-   * Récupérer une marque spécifique
+   * Récupérer un type spécifique
    *
    * @param int $type_id
    * @return Type
    */
-  public function find($type_id) {
+  public static function find($type_id) {
+
     // On récupère la connexion PDO
     $databaseDbConnection = Database::getPDO();
 
     // On crée notre requête SQL
-    $sql = 'SELECT * FROM `type` WHERE `id`=' . $type_id;
+    $sql = 'SELECT * FROM `type` WHERE `id` =' . $type_id;
 
     // On exécute notre requête
     $pdoStatement = $databaseDbConnection->query($sql);
@@ -49,5 +51,18 @@ class Type extends CoreModel{
 
     return $type;
   }
-    
+
+  public static function getAllTypesAssoc() {
+    $pdo = Database::getPDO();
+
+    $sql = "SELECT `id`, `name` FROM `type`";
+
+    $pdoStatement = $pdo->query($sql);
+
+    // Je veux récupérer la première colonne (les ids) en tant qu'indexs dans mon tableau associatif
+    // Et la seconde en tant que valeur
+    $result = $pdoStatement->fetchAll(PDO::FETCH_KEY_PAIR);
+
+    return $result;
+}
 }

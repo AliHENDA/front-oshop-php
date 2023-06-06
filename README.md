@@ -1,5 +1,7 @@
 # Projet _Dans les "shoe"_
 
+Cette version a été faite avant la version sous Symfony(repo Symfony-shop-front), et ne comporte pas le panier
+
 ## Description du projet
 
 Un client veut créer un site de e-commerce, en l'occurence une boutique en ligne de chaussures.  

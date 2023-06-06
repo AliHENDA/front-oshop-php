@@ -10,14 +10,6 @@ class CoreModel {
   protected $created_at;
   protected $updated_at;
 
-/* --------------- GETTERS / SETTERS ------------------- */
-  /*
-  Le tips d'Audric: 
-  Utiliser alt + shift et cliquer sur chaque propriété pour placer le curseur dedans.
-  Cliquer droit sur un d'elles et insérer les getters & setters
-  NE PAS OUBLIER : supprimer les getters et setters qui ne nous intéressent pas, si on a pas fait le tri avant (au moment du positionnement du curseur). Ici on ne veut pas de setters sur id ni sur created_at
-  */
-
   /**
    * Get the value of id
    */ 

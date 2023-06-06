@@ -43,7 +43,6 @@ class MainController extends CoreController {
     dump($oneProduct);
 
     echo '--------TYPE:---------';
-    /* Test de Flavien:*/
 
     $typeObject = new Type;
     $allTypes = $typeObject->findAll();
@@ -55,7 +54,6 @@ class MainController extends CoreController {
     dump($oneType);
 
     echo '--------CATEGORY:---------';
-    /* Test de David: */
     $categoryObject = new Category;
 
     $allCategories = $categoryObject->findAll();

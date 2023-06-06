@@ -5,13 +5,6 @@ require __DIR__ . '/../vendor/autoload.php';
 
 // Tableau des routes
 
-/*
-L'analogie de David:
-Le $routes c'est comme un portier à l'entrée d'un bâtiment qui te dit, pour aller à l'étage (method), prend l'ascenseur (controller)
-
-L'analogie de Flavien:
-En gros le gps affiche plusieurs chemin
-*/
 
 // Préparation d'Altorouter
 $router = new AltoRouter();

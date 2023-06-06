@@ -2,18 +2,13 @@
 
 namespace Oshop\Controllers;
 
-use Oshop\Models\Product;
 use Oshop\Models\Brand;
 use Oshop\Models\Type;
 use Oshop\Models\Category;
 
 class CoreController {
   protected function show($viewName, $viewData = []) {
-    // Brutal et à ne pas réutiliser à l'avenir sauf en cas de force majeure
-    // Ou de disparition du f0f
-    // On utilise le mot clé global, grâce à ça on rend accessible dans la fonction
-    // une variable à laquelle la fonction n'aurait pas accès normalement
-    // En gros = Global outrepasse la portée de la variable
+    //HORREUR
     global $router;
 
     $absoluteURL = $_SERVER['BASE_URI'];

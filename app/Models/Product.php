@@ -17,11 +17,6 @@ class Product extends CoreModel {
   private $type_id;
 
 
-  // Question à se poser pour savoir si je mets un setter:
-  // Est-ce que j'ai l'intention d'autoriser la modification de ce champ?
-  // Quesiont à se poser pour savoir si je mets un getter:
-  // Est-ce que j'ai l'intention de récupérer ces informations pour m'en servir OU les afficher ?
-
   /**
    * Get the value of description
    */ 

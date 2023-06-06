@@ -3,7 +3,6 @@
 namespace Oshop\Models;
 
 use Oshop\Utils\Database;
-// On peut préférer utiliser un use plutôt que l'appel direct dans le code lorsqu'on sait qu'on va utiliser la classe plusieurs fois 
 use \PDO;
 
 class Type extends CoreModel {
